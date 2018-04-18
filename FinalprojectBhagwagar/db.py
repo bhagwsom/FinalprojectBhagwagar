@@ -1,5 +1,7 @@
 import sqlite3
+
 DBNAME = 'Spotify.db'
+
 def init_db():
     conn =sqlite3.connect(DBNAME)
     cur=conn.cursor()
@@ -53,14 +55,30 @@ def write_album(album_info_list):
     conn=sqlite3.connect(DBNAME)
     cur=conn.cursor()
     insertion = album_info_list
-    sql_insert = ''' 
+    sql_insert = '''
         INSERT INTO "Albums"
-        VALUES(?,?,?,?,?)'''
+        VALUES(?,?,?,?,?,?)'''
     cur.execute(sql_insert, insertion)
     conn.commit()
     conn.close()
 
+def connect_db_album():
+    conn = sqlite3.connect(DBNAME)
+    cur = conn.cursor()
 
+    cur.execute('SELECT Id, AlbumName FROM Albums')
+    print('Your history:')
+    for row in cur:
+        print(row[0], row[1])
+
+def connect_db_artist():
+    conn = sqlite3.connect(DBNAME)
+    cur = conn.cursor()
+
+    cur.execute('SELECT Id, ArtistName FROM Artists')
+    print('Your history:')
+    for row in cur:
+        print(row[0], row[1])
 
 
 init_db()

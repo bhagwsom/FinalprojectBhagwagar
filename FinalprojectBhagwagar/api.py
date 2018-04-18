@@ -25,7 +25,7 @@ def api_request(url=None, params={}):
     json_resp=json.loads(resp.text)
     token=json_resp['access_token']
     data=requests.get(baseurl, headers={"Authorization": "Bearer " +token}, params=params)
-    print(data.url)
+    #print(data.url)
     return data.json()
 
 def get_artist_info(artist):
@@ -38,7 +38,7 @@ def get_artist_info(artist):
     popularitycount=artist_info['popularity']
     genres=artist_info['genres']
     #pprint(genres)
-    return [None, artistsname, followercount, popularitycount, genres]
+    return [None, artistsname, followercount, popularitycount, str(genres)]
 
 def get_album_info(album):
     params = {'type': 'album', 'q': album}
@@ -47,7 +47,7 @@ def get_album_info(album):
     albumidurl='https://api.spotify.com/v1/albums/'+ albumid
     albumdata=api_request(url=albumidurl)
     albumname=albumdata['name']
-    artistname=albumdata['artists']['name']
+    artistname=albumdata['artists'][0]['name']
     trackcount=(len(albumdata['tracks']['items']))
     release_date=(albumdata['release_date'])
     popularity=(albumdata['popularity'])
@@ -58,5 +58,5 @@ def get_album_info(album):
 
 #get_musictest()
 
-term = input("enter artist name and album name: \n> ")
-get_artist_info(term)
+# term = input("enter artist name and album name: \n> ")
+# get_artist_info(term)
