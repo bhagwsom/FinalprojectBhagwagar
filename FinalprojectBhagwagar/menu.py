@@ -35,3 +35,10 @@ detailed_artist_menu= '''
     3. Image
     4. No, I changed my mind
     '''
+
+def refresh():
+    print('\n'*25)
+
+
+def pressenter():
+    input('press enter to continue')

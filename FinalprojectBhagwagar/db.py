@@ -43,7 +43,7 @@ def init_db():
 def write_artist(artist_info_list):
     conn=sqlite3.connect(DBNAME)
     cur=conn.cursor()
-    insertion = artist_info_list
+    insertion = artist_info_list[:-1]
     sql_insert = '''
         INSERT INTO "Artists"
         VALUES(?,?,?,?,?)'''
@@ -54,7 +54,7 @@ def write_artist(artist_info_list):
 def write_album(album_info_list):
     conn=sqlite3.connect(DBNAME)
     cur=conn.cursor()
-    insertion = album_info_list
+    insertion = album_info_list[:-1]
     sql_insert = '''
         INSERT INTO "Albums"
         VALUES(?,?,?,?,?,?)'''

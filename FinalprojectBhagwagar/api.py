@@ -37,8 +37,9 @@ def get_artist_info(artist):
     followercount=artist_info['followers']['total']
     popularitycount=artist_info['popularity']
     genres=artist_info['genres']
+    artistid=artist_info['id']
     #pprint(genres)
-    return [None, artistsname, followercount, popularitycount, str(genres)]
+    return [None, artistsname, followercount, popularitycount, str(genres), artistid]
 
 def get_album_info(album):
     params = {'type': 'album', 'q': album}
@@ -51,11 +52,14 @@ def get_album_info(album):
     trackcount=(len(albumdata['tracks']['items']))
     release_date=(albumdata['release_date'])
     popularity=(albumdata['popularity'])
-    return [None, albumname, artistname, trackcount, release_date, popularity]
+    albumid=albumdata['id']
+    return [None, albumname, artistname, trackcount, release_date, popularity, albumid]
     # infourl=(data['artists']['items'][0]['href'])
     # artist_info=api_request(url=infourl)
     # print(artist_info)
 
+
+get_artist_info('Chris Brown')
 #get_musictest()
 
 # term = input("enter artist name and album name: \n> ")
