@@ -15,8 +15,8 @@ album_menu='''
     Do you want to see more details?
     '''
 detailed_album_menu='''
-    1. Graph 1: Compare Track Count
-    2. Graph 2: Compare Popularity
+    1. Graph 1: Compare Track Count to Beyonce
+    2. Graph 2: Compare Popularity to Beyonce
     3. Image
     4. No, I changed my mind
     '''
@@ -30,8 +30,8 @@ artist_menu='''
     '''
 
 detailed_artist_menu= '''
-    1. Graph 1: Compare Follower Count
-    2. Graph 2: Compare Popularity
+    1. Graph 1: Compare Follower Count to Beyonce
+    2. Graph 2: Compare Popularity to Beyonce
     3. Image
     4. No, I changed my mind
     '''

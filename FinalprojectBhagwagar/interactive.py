@@ -2,6 +2,7 @@ import menu
 import api
 import db
 import scraping
+import plotlygraphs
 
 def interactive():
     #Give the main menu (artist, album, )
@@ -16,7 +17,7 @@ def album_menu(information):
     print(menu.album_menu.format(*information[1:]))
     answer = input('> ')
     if answer =='yes':
-        more_info_album()
+        more_info_album(information)
     elif answer=='no':
         return
     else:
@@ -34,15 +35,25 @@ def artist_menu(information):
     else:
         print('Not a valid input')
         menu.pressenter()
-def more_info_album():
+def more_info_album(information):
     #graphs, image option
     menu.refresh()
     print(menu.detailed_album_menu)
+    information2=api.get_album_info('beyonce')
     answer=input('>')
     if answer=='1':
-        pass
+        #trackcount
+        trace1=[information[3], information2[3]]
+        #albumname
+        trace2=[information[1], information2[1]]
+        plotlygraphs.plot_graph1(trace1, trace2)
+
     elif answer=='2':
-        pass
+        #popularitycount
+        trace1=[information[5], information2[5]]
+        #albumname
+        trace2=[information[1], information2[1]]
+        plotlygraphs.plot_graph2(trace1, trace2)
     elif answer=='3':
         scraping.get_image(information[-1], mtype='album')
         return
@@ -57,12 +68,21 @@ def more_info_artist(information):
     #graphs, image option
     menu.refresh()
     print(menu.detailed_artist_menu)
+    information2=api.get_artist_info('beyonce')
     answer=input('>')
 
     if answer=='1':
-        pass
+        #followercount
+        trace1=[information[2], information2[2]]
+        #artistname
+        trace2=[information[1], information2[1]]
+        plotlygraphs.plot_graph1(trace1, trace2)
     elif answer=='2':
-        pass
+        #popularity
+        trace1=[information[3], information2[3]]
+        #artistname
+        trace2=[information[1], information2[1]]
+        plotlygraphs.plot_graph1(trace1, trace2)
     elif answer=='3':
         scraping.get_image(information[-1], mtype='artist')
         return
@@ -108,6 +128,7 @@ while True:
         else:
             print('Not a valid input')
             menu.pressenter()
-    except:
-        print('error, try again')
+    except Exception as e:
+        print(e)
+        #print('error, try again')
         menu.pressenter()
