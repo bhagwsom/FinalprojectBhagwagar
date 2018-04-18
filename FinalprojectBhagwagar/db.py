@@ -1,4 +1,6 @@
-def init_db_json():
+import sqlite3
+DBNAME = 'Spotify.db'
+def init_db():
     conn =sqlite3.connect(DBNAME)
     cur=conn.cursor()
 
@@ -11,8 +13,9 @@ def init_db_json():
             'Id' INTEGER PRIMARY KEY AUTOINCREMENT,
             'AlbumName' TEXT NOT NULL,
             'ArtistName' TEXT NOT NULL,
+            'TrackCount' INTEGER NOT NULL,
             'ReleaseDate' TEXT NOT NULL,
-            'TrackCount' TEXT NOT NULL
+            'Popularity' INTEGER NOT NULL
 
         );
     '''
@@ -25,24 +28,39 @@ def init_db_json():
     statement='''
         CREATE TABLE 'Artists'(
             'Id' INTEGER PRIMARY KEY AUTOINCREMENT,
-            'ArtistName' TEXT NOT NULL
+            'ArtistName' TEXT NOT NULL,
+            'FollowerCount' INTEGER NOT NULL,
+            'PopularityCount' INTEGER NOT NULL,
+            'Genres' TEXT NOT NULL
         );
     '''
     cur.execute(statement)
-
-    statement='''
-        DROP TABLE IF EXISTS 'Tracks';
-        '''
-    cur.execute(statement)
-    statement='''
-        CREATE TABLE 'Tracks'(
-            'Id' INTEGER PRIMARY KEY AUTOINCREMENT,
-            'ArtistName' TEXT NOT NULL,
-            'AlbumName' TEXT NOT NULL,
-            'TrackLength' INTEGER NOT NULL
-        );
-            '''
-    cur.execute(statement)
-
     conn.commit()
     conn.close()
+
+def write_artist(artist_info_list):
+    conn=sqlite3.connect(DBNAME)
+    cur=conn.cursor()
+    insertion = artist_info_list
+    sql_insert = '''
+        INSERT INTO "Artists"
+        VALUES(?,?,?,?,?)'''
+    cur.execute(sql_insert, insertion)
+    conn.commit()
+    conn.close()
+
+def write_album(album_info_list):
+    conn=sqlite3.connect(DBNAME)
+    cur=conn.cursor()
+    insertion = album_info_list
+    sql_insert = ''' 
+        INSERT INTO "Albums"
+        VALUES(?,?,?,?,?)'''
+    cur.execute(sql_insert, insertion)
+    conn.commit()
+    conn.close()
+
+
+
+
+init_db()

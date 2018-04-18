@@ -37,7 +37,8 @@ def get_artist_info(artist):
     followercount=artist_info['followers']['total']
     popularitycount=artist_info['popularity']
     genres=artist_info['genres']
-    pprint(genres)
+    #pprint(genres)
+    return [None, artistsname, followercount, popularitycount, genres]
 
 def get_album_info(album):
     params = {'type': 'album', 'q': album}
@@ -50,7 +51,7 @@ def get_album_info(album):
     trackcount=(len(albumdata['tracks']['items']))
     release_date=(albumdata['release_date'])
     popularity=(albumdata['popularity'])
-
+    return [None, albumname, artistname, trackcount, release_date, popularity]
     # infourl=(data['artists']['items'][0]['href'])
     # artist_info=api_request(url=infourl)
     # print(artist_info)
