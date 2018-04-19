@@ -31,4 +31,8 @@ def plot_graph3():
 
 def plot_graph4():
     #compare popularity for two artists
-    pass
+    data= [go.Bar(y=trace1, x=trace2, name='Bar Chart Comparing Follower Count to Beyonce')]
+    print(data)
+
+
+    py.plot(data, filename='Bar Chart Comparing Popularity')
