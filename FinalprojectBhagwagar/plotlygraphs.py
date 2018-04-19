@@ -11,7 +11,7 @@ def plot_graph1(trace1, trace2):
 
     py.plot(data, filename='Bar Chart Comparing Track Count')
 
-def plot_graph2():
+def plot_graph2(trace1, trace2):
     data= [go.Bar(y=trace1, x=trace2, name='Bar Chart Comparing Popularity to Beyonce')]
     print(data)
 
@@ -21,7 +21,7 @@ def plot_graph2():
 
 
 
-def plot_graph3():
+def plot_graph3(trace1, trace2):
     data= [go.Bar(y=trace1, x=trace2, name='Bar Chart Comparing Follower Count to Beyonce')]
     print(data)
 
@@ -29,7 +29,7 @@ def plot_graph3():
     py.plot(data, filename='Bar Chart Comparing FollowerCount')
 
 
-def plot_graph4():
+def plot_graph4(trace1, trace2):
     #compare popularity for two artists
     data= [go.Bar(y=trace1, x=trace2, name='Bar Chart Comparing Follower Count to Beyonce')]
     print(data)
